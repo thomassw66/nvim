@@ -1,0 +1,15 @@
+-- vim.cmd "colorscheme system76"
+-- vim.cmd "colorscheme auorora"
+-- vim.cmd "colorscheme tokyonight"
+-- vim.cmd "colorscheme darkplus"
+-- vim.vmd "colorscheme onedarker"
+
+local colorscheme = "darkplus"
+
+local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+
+if not status_ok then 
+	vim.notify("colorscheme " .. colorscheme .. " not found!")
+	return 
+end 
+
