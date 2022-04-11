@@ -17,34 +17,40 @@ local check_backspace = function()
 	return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
 end
 
+--   פּ ﯟ   some other good icons
 local kind_icons = {
-  Text = "t",
+  Text = "",
   Method = "m",
-  Function = "f",
-  Constructor = "constructor",
-  Field = "field",
-  Variable = "var",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
   Class = "",
-  Interface = "interface",
-  Module = "module",
-  Property = "property",
+  Interface = "",
+  Module = "",
+  Property = "",
   Unit = "",
   Value = "",
-  Enum = "enum",
+  Enum = "",
   Keyword = "",
-  Snippet = "snippet",
+  Snippet = "",
   Color = "",
-  File = "file",
-  Reference = "ref",
-  Folder = "folder",
-  EnumMember = "e_member",
-  Constant = "const",
-  Struct = "struct",
-  Event = "event",
-  Operator = "op",
-  TypeParameter = "typeparam",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = "",
 }
-
+-- find more here: https://www.nerdfonts.com/cheat-sheet
+-- info on installing nerd fonts for mac os here:
+-- https://techviewleo.com/install-nerd-fonts-on-linux-macos/
+--
+-- This probably conflicts with zsh / powerline so you may need to
+-- disable powerlevel10k if you use it with zsh
 
 cmp.setup {
  snippet = {
