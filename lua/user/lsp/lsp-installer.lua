@@ -24,5 +24,8 @@ lsp_installer.on_server_ready(function(server)
 		opts = vim.tbl_deep_extend("force", clangd_opts, opts)
 	end
 
+	if server.name == "sourcekitd" then
+	end 
+
 	server:setup(opts)
 end)

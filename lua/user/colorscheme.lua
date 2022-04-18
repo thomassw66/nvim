@@ -4,7 +4,8 @@
 -- vim.cmd "colorscheme darkplus"
 -- vim.vmd "colorscheme onedarker"
 
-local colorscheme = "darkplus"
+
+local colorscheme = "nord"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 

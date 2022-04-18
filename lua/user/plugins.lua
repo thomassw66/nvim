@@ -46,6 +46,7 @@ return packer.startup(function(use)
 
 	use "lunarvim/colorschemes" -- a bunch of colorschemes
 	use "folke/tokyonight.nvim"
+	use "arcticicestudio/nord-vim"
 
 	-- cmp plugings
 	use "hrsh7th/nvim-cmp"  -- completion plugin
