@@ -67,6 +67,8 @@ keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>tl", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>f", ":Format<CR>", opts)
 
+keymap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/custom-snippets.lua<CR>", opts)
+
 -- Terminal --
 -- Better terminal navigation
 -- keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
