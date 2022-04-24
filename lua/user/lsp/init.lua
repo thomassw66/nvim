@@ -16,3 +16,5 @@ end
 
 handlers.setup()
 
+require("user.lsp.null-ls")
+

@@ -39,7 +39,6 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
-
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
@@ -66,6 +65,7 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 -- Telescope  --
 keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>tl", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>f", ":Format<CR>", opts)
 
 -- Terminal --
 -- Better terminal navigation
@@ -74,7 +74,8 @@ keymap("n", "<leader>tl", ":Telescope live_grep<CR>", opts)
 -- keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
-vim.api.nvim_exec([[
+vim.api.nvim_exec(
+	[[
 let g:tw_cp_tmpl_path = glob('~/src/cp-tmpl')
 
 function! TwCopyFile(f_name)
@@ -94,6 +95,8 @@ endfunction
 function! EchoStrategy(cmd)
 	echo 'It works! Command for running tests: ' . a:cmd
 endfunction
-]], false)
+]],
+	false
+)
 
 keymap("n", "<C-i>", ":call TwCpInit()<CR>", opts)

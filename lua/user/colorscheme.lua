@@ -4,8 +4,7 @@
 -- vim.cmd "colorscheme darkplus"
 -- vim.vmd "colorscheme onedarker"
 
-
- local colorscheme = "nord"
+local colorscheme = "nord"
 -- local colorscheme = "carbonized-light"
 -- local colorscheme = "hybrid_material"
 
@@ -15,4 +14,3 @@ if not status_ok then
 	vim.notify("colorscheme " .. colorscheme .. " not found!")
 	return
 end
-
