@@ -1,5 +1,3 @@
-
-
 local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
@@ -41,6 +39,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
+
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
@@ -61,6 +60,12 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
+
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+
+-- Telescope  --
+keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>tl", ":Telescope live_grep<CR>", opts)
 
 -- Terminal --
 -- Better terminal navigation

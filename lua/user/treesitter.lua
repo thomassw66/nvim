@@ -8,8 +8,9 @@ configs.setup {
 	sync_install = false,
 
 	-- List of parsers to ignore installing.
-	ignore_install = { 
+	ignore_install = {
 		-- Mysteriously fails to install, I don't use any norg atm so ignore for now.
+		"phpdoc",
 		"norg"
 	},
 

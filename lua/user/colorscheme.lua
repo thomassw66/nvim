@@ -5,12 +5,14 @@
 -- vim.vmd "colorscheme onedarker"
 
 
-local colorscheme = "nord"
+ local colorscheme = "nord"
+-- local colorscheme = "carbonized-light"
+-- local colorscheme = "hybrid_material"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 
-if not status_ok then 
+if not status_ok then
 	vim.notify("colorscheme " .. colorscheme .. " not found!")
-	return 
-end 
+	return
+end
 
