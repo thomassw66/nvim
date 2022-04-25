@@ -78,7 +78,7 @@ keymap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/custom-sni
 
 vim.api.nvim_exec(
 	[[
-let g:tw_cp_tmpl_path = glob('~/src/cp-tmpl')
+let g:tw_cp_tmpl_path = glob('~/.config/nvim/cp-tmpl')
 
 function! TwCopyFile(f_name)
 	let tmpl_file = g:tw_cp_tmpl_path . '/' . a:f_name
