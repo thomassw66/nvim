@@ -66,10 +66,41 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>tl", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>f", ":Format<CR>", opts)
+keymap("n", "<leader>m", ":messages<CR>", opts)
 
 keymap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/custom-snippets.lua<CR>", opts)
 
 keymap("n", "<leader>cp", ":call TwCpInit()<CR>", opts)
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = { "lua", "text", "*" },
+	callback = function()
+		local data = {
+			buf = vim.fn.expand("<abuf>"),
+			file = vim.fn.expand("<afile>"),
+			match = vim.fn.expand("<amatch>"),
+		}
+
+		vim.schedule(function()
+			print("Hej, we got called")
+			print(vim.inspect(data))
+		end)
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = { "*.tsx", "*.ts", "*.jsx", "*.js" },
+	callback = function()
+		vim.api.nvim_command("EslintFixAll")
+	end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+	pattern = { "*.lua" },
+	callback = function()
+		vim.api.nvim_command("Format")
+	end,
+})
 
 -- Terminal --
 -- Better terminal navigation
