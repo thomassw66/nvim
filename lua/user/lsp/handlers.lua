@@ -80,15 +80,17 @@ local function lsp_keymaps(bufnr)
 	vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 end
 
-function Set(list) 
+function Set(list)
 	local set = {}
-	for _, l in ipairs(list) do set[l] = true end
+	for _, l in ipairs(list) do
+		set[l] = true
+	end
 	return set
 end
 
 M.on_attach = function(client, bufnr)
 	-- disable lsp formatting on languages that have a packaged formatter, so null ls becomes the default.
-	local disabled_lsp_formatters = Set{"tsserver", "sumneko_lua", "gopls"}
+	local disabled_lsp_formatters = Set({ "tsserver", "sumneko_lua", "gopls", "clangd" })
 	if disabled_lsp_formatters[client.name] then
 		client.resolved_capabilities.document_formatting = false
 	end

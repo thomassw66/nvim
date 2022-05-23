@@ -9,7 +9,6 @@ local formatting = null_ls.builtins.formatting
 null_ls.setup({
 	debug = false,
 	sources = {
-		formatting.swiftformat, -- swift
 		formatting.clang_format, -- c++ / objectivec / ...
 		formatting.stylua, -- lua
 		formatting.gofmt, -- golang
