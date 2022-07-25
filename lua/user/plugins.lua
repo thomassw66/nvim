@@ -88,6 +88,16 @@ return packer.startup(function(use)
 	use("google/maktaba")
 	use("bazelbuild/vim-bazel")
 
+	use({
+		"amirali/yapf.nvim",
+		requires = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("yapf").setup({
+				style = "google",
+			})
+		end,
+	})
+
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

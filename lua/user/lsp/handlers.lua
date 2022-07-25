@@ -90,7 +90,7 @@ end
 
 M.on_attach = function(client, bufnr)
 	-- disable lsp formatting on languages that have a packaged formatter, so null ls becomes the default.
-	local disabled_lsp_formatters = Set({ "tsserver", "sumneko_lua", "gopls", "clangd" })
+	local disabled_lsp_formatters = Set({ "tsserver", "sumneko_lua", "gopls" })
 	if disabled_lsp_formatters[client.name] then
 		client.resolved_capabilities.document_formatting = false
 	end

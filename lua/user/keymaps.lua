@@ -65,7 +65,8 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 -- Telescope  --
 keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>tl", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>f", ":Format<CR>", opts)
+keymap("n", "<leader>f", ":lua vim.lsp.buf.formatting()<CR>", opts)
+keymap("n", "<leader>y", ":Yapf<CR>", opts)
 keymap("n", "<leader>m", ":messages<CR>", opts)
 
 keymap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/custom-snippets.lua<CR>", opts)
