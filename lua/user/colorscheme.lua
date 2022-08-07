@@ -4,7 +4,8 @@
 -- vim.cmd "colorscheme darkplus"
 -- vim.vmd "colorscheme onedarker"
 
-local colorscheme = "nord"
+-- local colorscheme = "nord"
+local colorscheme = "onenord"
 -- local colorscheme = "carbonized-light"
 -- local colorscheme = "hybrid_material"
 

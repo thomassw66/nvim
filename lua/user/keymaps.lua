@@ -65,7 +65,7 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 -- Telescope  --
 keymap("n", "<leader>tf", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>tl", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>f", ":lua vim.lsp.buf.formatting()<CR>", opts)
+keymap("n", "<leader>f", ":lua vim.lsp.buf.format { async = true }<CR>", opts)
 keymap("n", "<leader>y", ":Yapf<CR>", opts)
 keymap("n", "<leader>m", ":messages<CR>", opts)
 
@@ -123,6 +123,8 @@ endfunction
 function! TwCpInit()
 	call TwCopyFile('makefile')
 	call TwCopyFile('.gitignore')
+  call TwCopyFile('gen.py')
+  call TwCopyFile('s.sh')
 
 	let main_file = g:tw_cp_tmpl_path . '/' . 'main.cc'
 	exec "r !cat ". main_file
