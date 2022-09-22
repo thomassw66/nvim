@@ -98,6 +98,24 @@ return packer.startup(function(use)
 		end,
 	})
 
+	use({
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		setup = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		ft = { "markdown" },
+	})
+
+	use("mfussenegger/nvim-dap")
+	use("rcarriga/nvim-dap-ui")
+	use("theHamsta/nvim-dap-virtual-text")
+	use("nvim-telescope/telescope-dap.nvim")
+
+	use("ThePrimeagen/harpoon")
+
+	use("olivercederborg/poimandres.nvim")
+
 	if PACKER_BOOTSTRAP then
 		require("packer").sync()
 	end

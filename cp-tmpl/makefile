@@ -1,8 +1,16 @@
 CC=g++
 OPTS=-std=c++17
 
-main: main.cc 
-	$(CC) $(OPTS) main.cc -o main
+OPTS=-g -std=c++17 -Wall -Wextra -Wformat=2 -Wfloat-equal \
+		 -Wshadow -Wno-unused-parameter -fsanitize=address,undefined
 
-format: main.cc 
-	clang-format -i -style=Google main.cc 
+all: clean
+all: main
+
+main: main.cc 
+	$(CC) $(OPTS) $< -o $@
+
+clean:
+	$(RM) main 
+
+.PHONY: clean all

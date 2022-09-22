@@ -35,10 +35,6 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
--- Move text up and down
-keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
-keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
-
 -- Insert --
 -- Press jk fast to enter
 keymap("i", "jk", "<ESC>", opts)
@@ -68,6 +64,9 @@ keymap("n", "<leader>tl", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>f", ":lua vim.lsp.buf.format { async = true }<CR>", opts)
 keymap("n", "<leader>y", ":Yapf<CR>", opts)
 keymap("n", "<leader>m", ":messages<CR>", opts)
+
+keymap("n", "<leader>hm", ":lua require('harpoon.mark').add_file()<CR>", opts)
+keymap("n", "<leader>ht", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", opts)
 
 keymap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/custom-snippets.lua<CR>", opts)
 
@@ -99,7 +98,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = { "*.lua" },
 	callback = function()
-		vim.api.nvim_command("Format")
+		vim.lsp.buf.format({ async = true })
 	end,
 })
 
@@ -125,6 +124,7 @@ function! TwCpInit()
 	call TwCopyFile('.gitignore')
   call TwCopyFile('gen.py')
   call TwCopyFile('s.sh')
+  call TwCopyFile('main.py')
 
 	let main_file = g:tw_cp_tmpl_path . '/' . 'main.cc'
 	exec "r !cat ". main_file
@@ -136,5 +136,3 @@ endfunction
 ]],
 	false
 )
-
-keymap("n", "<C-i>", ":call TwCpInit()<CR>", opts)

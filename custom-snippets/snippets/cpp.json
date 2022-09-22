@@ -27,7 +27,7 @@
 		"body": [
 			"struct segment_tree {};"
 		],
-		"description": ""
+		"description": "Dynamic range min / max updates and queries in O(logN)"
 	},
 	"binary_search": {
 		"prefix": "binary_search",
@@ -35,5 +35,16 @@
 			"struct binary_search {};"
 		],
 		"description": ""
-	}
+	},
+  "fenwick_tree": {
+    "prefix": "fenwick_tree",
+    "body": [
+    ],
+    "description": "Dynamic range sum updates and queries in O(logN)"
+  },
+  "treap": {
+    "prefix": "treap", 
+    "body": [],
+    "description": ""
+  },
 }
