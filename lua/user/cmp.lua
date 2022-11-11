@@ -10,7 +10,6 @@ if not snip_status_ok then
 	return
 end
 
-
 -- require("luasnip/loaders/from_vscode").lazy_load()
 
 luasnip.config.set_config({
@@ -102,9 +101,9 @@ cmp.setup({
 		end,
 	},
 	sources = cmp.config.sources({
+		{ name = "luasnip" },
 		{ name = "nvim_lua" },
 		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
 		{ name = "buffer", keyword_length = 5 },
 		{ name = "path" },
 	}),
