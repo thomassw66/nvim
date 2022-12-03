@@ -1,33 +1,52 @@
 local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
 if not status_ok then
-	return
+  return
 end
 
-lsp_installer.on_server_ready(function(server)
-	local opts = {
-		on_attach = require("user.lsp.handlers").on_attach,
-		capabilities = require("user.lsp.handlers").capabilities,
-	}
+local lspconfig = require("lspconfig")
 
-	if server.name == "jsonls" then
-		local jsonls_opts = require("user.lsp.settings.jsonls")
-		opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
-	end
+local servers = {
+  -- "jsonls",
+  "sumneko_lua",
+  "clangd",
+  "cmake",
+  "prosemd_lsp",
+  "cmake",
+  "cssls",
+  "rust_analyzer",
+  "jedi_language_server",
+  "vuels",
+  "tsserver",
+  "texlab"
+}
 
-	if server.name == "sumneko_lua" then
-		local sumneko_opts = require("user.lsp.settings.sumneko_lua")
-		opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-	end
+lsp_installer.setup({
+  ensure_installed = servers,
+  automatic_installation = true,
+})
 
-	if server.name == "clangd" then
-		local clangd_opts = require("user.lsp.settings.clangd")
-		opts = vim.tbl_deep_extend("force", clangd_opts, opts)
-	end
+local on_attach = require("user.lsp.handlers").on_attach
+local capabilities = require("user.lsp.handlers").capabilities
 
-	if server.name == "sourcekitd" then
-		-- local sourcekitd_opts = require("user.lsp.settings.sourcekitd")
-		-- opts = vim.tbl_deep_extend("force", sourcekitd_opts, opts)
-	end
+lspconfig.sumneko_lua.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+  settings = require("user.lsp.settings.sumneko_lua").settings,
+})
 
-	server:setup(opts)
-end)
+for _, server in ipairs({
+  "clangd",
+  "cmake",
+  "prosemd_lsp",
+  "cmake",
+  "cssls",
+  "rust_analyzer",
+  "jedi_language_server",
+  "vuels",
+  "tsserver"
+}) do
+  lspconfig[server].setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+  })
+end

@@ -14,6 +14,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	vim.cmd([[packadd packer.nvim]])
 end
 
+-- Auto run packer sync when this file is saved.
 vim.cmd([[
 	augroup packer_user_config
 		autocmd!
@@ -35,24 +36,32 @@ packer.init({
 })
 
 return packer.startup(function(use)
-	-- my plugins here.
-	use("wbthomason/packer.nvim") -- packer manages itself.
+	use("wbthomason/packer.nvim")
 	use("nvim-lua/popup.nvim") -- vim popup api in neovim
 	use("nvim-lua/plenary.nvim") -- useful lua functions.
-	use("windwp/nvim-autopairs") -- Autopairs, integrates with both cmp and treesitterk
 
-	use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
+	-- Autopairs, integrates with both cmp and treesitterk
+	use({
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup({})
+		end,
+	})
 
-	use("lunarvim/colorschemes") -- a bunch of colorschemes
+	-- use({ "tpope/vim-dispatch", opt = true, cmd = { "Dispatch", "Make", "Focus", "Start" } })
+
+	-- a bunch of colorschemes
+	use("lunarvim/colorschemes")
 	use("folke/tokyonight.nvim")
 	use("arcticicestudio/nord-vim")
-	-- use("haystackandroid/carbonized")
 	use("kristijanhusak/vim-hybrid-material")
 
 	use("kyazdani42/nvim-web-devicons")
 	use("kyazdani42/nvim-tree.lua")
 	use("moll/vim-bbye")
 	use("akinsho/bufferline.nvim")
+
+	use("nvim-lualine/lualine.nvim")
 
 	-- toggle term
 	use("akinsho/toggleterm.nvim")
@@ -77,6 +86,8 @@ return packer.startup(function(use)
 
 	use("nvim-telescope/telescope.nvim")
 	use("nvim-telescope/telescope-media-files.nvim")
+
+	use({ "nvim-telescope/telescope-ui-select.nvim" })
 
 	use({
 		"nvim-treesitter/nvim-treesitter",
@@ -107,10 +118,16 @@ return packer.startup(function(use)
 		ft = { "markdown" },
 	})
 
+	use("Civitasv/cmake-tools.nvim")
+
 	use("mfussenegger/nvim-dap")
 	use("rcarriga/nvim-dap-ui")
 	use("theHamsta/nvim-dap-virtual-text")
+
 	use("nvim-telescope/telescope-dap.nvim")
+
+	use("Pocco81/DAPInstall.nvim")
+	use("mfussenegger/nvim-dap-python")
 
 	use("ThePrimeagen/harpoon")
 

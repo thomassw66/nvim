@@ -1,6 +1,6 @@
 local status_ok, telescope = pcall(require, "telescope")
 if not status_ok then
-	return
+  return
 end
 
 
@@ -10,13 +10,13 @@ local actions = require "telescope.actions"
 
 
 telescope.setup {
-	defaults = {
-		prompt_prefix = " ",
-		selection_caret = " ",
+  defaults = {
+    prompt_prefix = " ",
+    selection_caret = " ",
 
-		path_display = { "smart" },
+    path_display = { "smart" },
 
-		mappings = {
+    mappings = {
       i = {
         ["<C-n>"] = actions.cycle_history_next,
         ["<C-p>"] = actions.cycle_history_prev,
@@ -79,8 +79,8 @@ telescope.setup {
 
         ["?"] = actions.which_key,
       },
-		},
-	},
+    },
+  },
   pickers = {
     -- Default configuration for builtin pickers goes here:
     -- picker_name = {
@@ -91,12 +91,26 @@ telescope.setup {
     -- builtin picker
   },
   extensions = {
-    media_files = {
-        -- filetypes whitelist
-        -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-        filetypes = {"png", "webp", "jpg", "jpeg"},
-        find_cmd = "rg" -- find command (defaults to `fd`)
+    ["ui-select"] = {
+      require("telescope.themes").get_dropdown {
+        -- even more opts
+        width = 0.8,
+        previewer = false,
+        prompt_title = false,
+        borderchars = {
+          { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+          prompt = { "─", "│", " ", "│", "┌", "┐", "│", "│" },
+          results = { "─", "│", "─", "│", "├", "┤", "┘", "└" },
+          preview = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+        },
       }
+    },
+    media_files = {
+      -- filetypes whitelist
+      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+      filetypes = { "png", "webp", "jpg", "jpeg" },
+      find_cmd = "rg" -- find command (defaults to `fd`)
+    }
     -- Your extension configuration goes here:
     -- extension_name = {
     --   extension_config_key = value,
@@ -105,3 +119,4 @@ telescope.setup {
   },
 }
 
+require("telescope").load_extension("ui-select")

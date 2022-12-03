@@ -42,6 +42,8 @@ nvim_tree.setup({
 		"dashboard",
 		"alpha",
 	},
+  renderer = {
+  },
 	-- auto_close = true,
 	open_on_tab = true,
 	hijack_cursor = false,
@@ -79,7 +81,7 @@ nvim_tree.setup({
 	},
 	view = {
 		width = 30,
-		height = 30,
+		-- height = 30,
 		hide_root_folder = false,
 		side = "left",
 		-- auto_resize = true,

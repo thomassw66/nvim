@@ -37,7 +37,7 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
+-- keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -45,8 +45,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
-keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+-- keymap("v", "<A-j>", ":m .+1<CR>==", opts)
+-- keymap("v", "<A-k>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --
@@ -72,34 +72,26 @@ keymap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/custom-sni
 
 keymap("n", "<leader>cp", ":call TwCpInit()<CR>", opts)
 
-vim.api.nvim_create_autocmd("FileType", {
-	pattern = { "lua", "text", "*" },
-	callback = function()
-		local data = {
-			buf = vim.fn.expand("<abuf>"),
-			file = vim.fn.expand("<afile>"),
-			match = vim.fn.expand("<amatch>"),
-		}
+keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts)
+keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
+keymap("n", "<F11>", ":lua require'dap'.step_into()<CR>", opts)
+keymap("n", "<F12>", ":lua require'dap'.step_out()<CR>", opts)
+keymap("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>", opts)
+keymap("n", "<leader>dr", ":lua require'dap'.repl.open()<CR>", opts)
 
-		vim.schedule(function()
-			print("Hej, we got called")
-			print(vim.inspect(data))
-		end)
-	end,
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.tsx", "*.ts", "*.jsx", "*.js" },
+  callback = function()
+    vim.api.nvim_command("EslintFixAll")
+  end,
 })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.tsx", "*.ts", "*.jsx", "*.js" },
-	callback = function()
-		vim.api.nvim_command("EslintFixAll")
-	end,
-})
-
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = { "*.lua" },
-	callback = function()
-		vim.lsp.buf.format({ async = true })
-	end,
+  pattern = { "*.lua" },
+  callback = function()
+    vim.lsp.buf.format({ async = true })
+  end,
 })
 
 -- Terminal --
@@ -110,7 +102,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 vim.api.nvim_exec(
-	[[
+  [[
 let g:tw_cp_tmpl_path = glob('~/.config/nvim/cp-tmpl')
 
 function! TwCopyFile(f_name)
@@ -133,6 +125,6 @@ endfunction
 function! EchoStrategy(cmd)
 	echo 'It works! Command for running tests: ' . a:cmd
 endfunction
-]],
-	false
+]] ,
+  false
 )

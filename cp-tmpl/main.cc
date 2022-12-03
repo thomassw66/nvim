@@ -36,5 +36,9 @@ int32_t main(int32_t argc, char **argv) {
   ios_base::sync_with_stdio(0);
   cin.tie(0);
 
+#ifdef TWLOCAL
+  freopen("sin.txt", "r", stdin);
+#endif 
+
   return 0;
 }
