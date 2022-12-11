@@ -71,6 +71,7 @@ keymap("n", "<leader>ht", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", 
 keymap("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/lua/user/custom-snippets.lua<CR>", opts)
 
 keymap("n", "<leader>cp", ":call TwCpInit()<CR>", opts)
+keymap("n", "<leader>un", ":call TwUnixTemplateInit()<CR>", opts)
 
 keymap("n", "<F5>", ":lua require'dap'.continue()<CR>", opts)
 keymap("n", "<F10>", ":lua require'dap'.step_over()<CR>", opts)
@@ -104,21 +105,37 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 vim.api.nvim_exec(
   [[
 let g:tw_cp_tmpl_path = glob('~/.config/nvim/cp-tmpl')
+let g:tw_unix_template_path = glob('~/.config/nvim/templates/unix_program')
 
-function! TwCopyFile(f_name)
-	let tmpl_file = g:tw_cp_tmpl_path . '/' . a:f_name
+function! TwCopyFile(f_name, template_path)
+  echom a:f_name
+  echom a:template_path
+	let tmpl_file = a:template_path . '/' . a:f_name
 	let f_bytes = readfile(tmpl_file, "b")
 	call writefile(f_bytes, a:f_name, "b")
 endfunction
 
 function! TwCpInit()
-	call TwCopyFile('makefile')
-	call TwCopyFile('.gitignore')
-  call TwCopyFile('gen.py')
-  call TwCopyFile('s.sh')
-  call TwCopyFile('main.py')
+	call TwCopyFile('makefile', g:tw_cp_tmpl_path)
+	call TwCopyFile('.gitignore', g:tw_cp_tmpl_path)
+  call TwCopyFile('gen.py', g:tw_cp_tmpl_path)
+  call TwCopyFile('s.sh', g:tw_cp_tmpl_path)
+  call TwCopyFile('main.py', g:tw_cp_tmpl_path)
 
 	let main_file = g:tw_cp_tmpl_path . '/' . 'main.cc'
+	exec "r !cat ". main_file
+endfunction 
+
+function! TwUnixTemplateInit()
+  echom g:tw_unix_template_path
+
+  call TwCopyFile("makefile", g:tw_unix_template_path)
+  call TwCopyFile("unix_helpers.cc", g:tw_unix_template_path)
+  call TwCopyFile("unix_helpers.h", g:tw_unix_template_path)
+
+  " call TwCopyFile("tmpl.cc", g:tw_unix_template_path)
+
+	let main_file = g:tw_unix_template_path . '/' . 'tmpl.cc'
 	exec "r !cat ". main_file
 endfunction 
 
