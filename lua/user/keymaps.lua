@@ -108,8 +108,6 @@ let g:tw_cp_tmpl_path = glob('~/.config/nvim/cp-tmpl')
 let g:tw_unix_template_path = glob('~/.config/nvim/templates/unix_program')
 
 function! TwCopyFile(f_name, template_path)
-  echom a:f_name
-  echom a:template_path
 	let tmpl_file = a:template_path . '/' . a:f_name
 	let f_bytes = readfile(tmpl_file, "b")
 	call writefile(f_bytes, a:f_name, "b")
@@ -127,8 +125,6 @@ function! TwCpInit()
 endfunction 
 
 function! TwUnixTemplateInit()
-  echom g:tw_unix_template_path
-
   call TwCopyFile("makefile", g:tw_unix_template_path)
   call TwCopyFile("unix_helpers.cc", g:tw_unix_template_path)
   call TwCopyFile("unix_helpers.h", g:tw_unix_template_path)
