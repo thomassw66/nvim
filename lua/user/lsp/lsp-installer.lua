@@ -11,7 +11,6 @@ local servers = {
   "clangd",
   "cmake",
   "prosemd_lsp",
-  "cmake",
   "cssls",
   "rust_analyzer",
   "jedi_language_server",
@@ -21,7 +20,7 @@ local servers = {
 }
 
 lsp_installer.setup({
-  ensure_installed = servers,
+  -- ensure_installed = servers,
   automatic_installation = true,
 })
 
@@ -34,19 +33,23 @@ lspconfig.sumneko_lua.setup({
   settings = require("user.lsp.settings.sumneko_lua").settings,
 })
 
-for _, server in ipairs({
-  "clangd",
-  "cmake",
-  "prosemd_lsp",
-  "cmake",
-  "cssls",
-  "rust_analyzer",
-  "jedi_language_server",
-  "vuels",
-  "tsserver"
-}) do
-  lspconfig[server].setup({
-    on_attach = on_attach,
-    capabilities = capabilities,
-  })
-end
+lspconfig.clangd.setup({
+  capabilities = capabilities,
+  on_attach = on_attach,
+})
+
+--for _, server in ipairs({
+--  "clangd",
+--  "prosemd_lsp",
+--  "cmake",
+--  "cssls",
+--  "rust_analyzer",
+--  "jedi_language_server",
+--  "vuels",
+--  "tsserver"
+-- }) do
+--  lspconfig[server].setup({
+--    on_attach = on_attach,
+--     capabilities = capabilities,
+--   })
+-- end
