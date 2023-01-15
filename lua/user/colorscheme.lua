@@ -5,8 +5,8 @@
 -- vim.vmd "colorscheme onedarker"
 
 -- local colorscheme = "tokyonight"
--- local colorscheme = "nord"
-local colorscheme = "onenord"
+local colorscheme = "nord"
+-- local colorscheme = "onenord"
 -- local colorscheme = "poimandres"
 -- local colorscheme = "carbonized-light"
 
