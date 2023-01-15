@@ -6,17 +6,8 @@ end
 local lspconfig = require("lspconfig")
 
 local servers = {
-  -- "jsonls",
   "sumneko_lua",
   "clangd",
-  "cmake",
-  "prosemd_lsp",
-  "cssls",
-  "rust_analyzer",
-  "jedi_language_server",
-  "vuels",
-  "tsserver",
-  "texlab"
 }
 
 lsp_installer.setup({
@@ -37,19 +28,3 @@ lspconfig.clangd.setup({
   capabilities = capabilities,
   on_attach = on_attach,
 })
-
---for _, server in ipairs({
---  "clangd",
---  "prosemd_lsp",
---  "cmake",
---  "cssls",
---  "rust_analyzer",
---  "jedi_language_server",
---  "vuels",
---  "tsserver"
--- }) do
---  lspconfig[server].setup({
---    on_attach = on_attach,
---     capabilities = capabilities,
---   })
--- end

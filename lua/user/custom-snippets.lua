@@ -12,17 +12,7 @@ local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
 
 ls.add_snippets(nil, {
-  all = {
-    snip({
-      trig = "ily",
-      name = "I love u",
-      dscr = "",
-    }, {
-      func(function()
-        return { "I love u" }
-      end),
-    }),
-  },
+  all = {},
   cpp = {
     snip(
       "funcdef",
