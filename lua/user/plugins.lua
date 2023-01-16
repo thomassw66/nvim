@@ -96,7 +96,6 @@ return packer.startup(function(use)
   use("nvim-treesitter/playground")
 
   use("google/maktaba")
-  use("ThePrimeagen/harpoon")
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()
