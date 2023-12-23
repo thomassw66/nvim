@@ -52,7 +52,7 @@ return packer.startup(function(use)
 
   -- a bunch of colorschemes
   use("lunarvim/colorschemes")
-  use("arcticicestudio/nord-vim")
+--  use("arcticicestudio/nord-vim")
   use("kristijanhusak/vim-hybrid-material")
 
   use("kyazdani42/nvim-web-devicons")
@@ -95,7 +95,6 @@ return packer.startup(function(use)
   use("p00f/nvim-ts-rainbow")
   use("nvim-treesitter/playground")
 
-  use("google/maktaba")
 
   if PACKER_BOOTSTRAP then
     require("packer").sync()

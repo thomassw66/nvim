@@ -1,13 +1,13 @@
-require("user.options")
-require("user.keymaps")
-require("user.plugins")
-require("user.colorscheme")
-require("user.custom-snippets")
-require("user.cmp")
-require("user.lsp")
-require("user.lualine")
-require("user.telescope")
-require("user.treesitter")
-require("user.bufferline")
-require("user.nvim-tree")
-require("user.toggleterm")
+
+require "user.options"
+require "user.keymaps"
+require "user.plugins"
+require "user.colorscheme"
+require "user.cmp"
+require "user.lsp"
+require "user.telescope"
+require "user.treesitter"
+require "user.bufferline"
+require "user.nvim-tree"
+require "user.toggleterm"
+

@@ -40,50 +40,5 @@ keymap("n", "<leader>tl", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>f", ":lua vim.lsp.buf.format { async = true }<CR>", opts)
 keymap("n", "<leader>m", ":messages<CR>", opts)
 
-keymap("n", "<leader>cp", ":call TwCpInit()<CR>", opts)
-keymap("n", "<leader>un", ":call TwUnixTemplateInit()<CR>", opts)
 
--- vim.api.nvim_create_autocmd("BufWritePre", {
---  pattern = { "*.lua" },
---  callback = function()
---    vim.lsp.buf.format({ async = false })
---  end,
--- })
 
-vim.api.nvim_exec(
-  [[
-let g:tw_cp_tmpl_path = glob('~/.config/nvim/templates/cp')
-let g:tw_unix_template_path = glob('~/.config/nvim/templates/templates/tlpi')
-
-function! TwCopyFile(f_name, template_path)
-	let tmpl_file = a:template_path . '/' . a:f_name
-	let f_bytes = readfile(tmpl_file, "b")
-	call writefile(f_bytes, a:f_name, "b")
-endfunction
-
-function! TwCpInit()
-	call TwCopyFile('makefile', g:tw_cp_tmpl_path)
-	call TwCopyFile('.gitignore', g:tw_cp_tmpl_path)
-  call TwCopyFile('s.sh', g:tw_cp_tmpl_path)
-
-	let main_file = g:tw_cp_tmpl_path . '/' . 'main.cc'
-	exec "r !cat ". main_file
-endfunction 
-
-function! TwUnixTemplateInit()
-  call TwCopyFile("makefile", g:tw_unix_template_path)
-  call TwCopyFile("unix_helpers.cc", g:tw_unix_template_path)
-  call TwCopyFile("unix_helpers.h", g:tw_unix_template_path)
-
-  " call TwCopyFile("tmpl.cc", g:tw_unix_template_path)
-
-	let main_file = g:tw_unix_template_path . '/' . 'tmpl.cc'
-	exec "r !cat ". main_file
-endfunction 
-
-function! EchoStrategy(cmd)
-	echo 'It works! Command for running tests: ' . a:cmd
-endfunction
-]] ,
-  false
-)
