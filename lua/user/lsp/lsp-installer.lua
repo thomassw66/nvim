@@ -6,7 +6,7 @@ end
 local lspconfig = require("lspconfig")
 
 local servers = {
-  "sumneko_lua",
+  -- "sumneko_lua",
   "clangd",
 }
 
@@ -17,12 +17,6 @@ lsp_installer.setup({
 
 local on_attach = require("user.lsp.handlers").on_attach
 local capabilities = require("user.lsp.handlers").capabilities
-
-lspconfig.sumneko_lua.setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
-  settings = require("user.lsp.settings.sumneko_lua").settings,
-})
 
 lspconfig.clangd.setup({
   capabilities = capabilities,
